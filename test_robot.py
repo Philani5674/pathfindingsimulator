@@ -72,6 +72,7 @@ RIGHT - turn right by 90 degrees
 LEFT - turn left by 90 degrees
 SPRINT - sprint forward according to a formula
 REPLAY - replays all movement commands from history [FORWARD, BACK, RIGHT, LEFT, SPRINT]
+Mazerun - solves the maze from (0,0) to [Top Down Left Right] borders.
 """, help_string)
 
 

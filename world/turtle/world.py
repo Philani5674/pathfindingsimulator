@@ -5,6 +5,7 @@
 # -------------------------------------------------------------------------------------------------
 import turtle as t
 import maze.the_worlds_most_crazy_maze as obs
+import mazerunner_path as mazepath
 
 
 t.screensize(150, 250)
@@ -38,8 +39,6 @@ def draw_obstacles(obs_list):
     t.color('red')
     t.pencolor('red')
     t.pendown()
-    from testing import draw_path
-    draw_path()
 
 
 def show_obstacles(obs_list):
@@ -194,12 +193,33 @@ def draw_boundary():
     t.goto(100,200)
     t.penup()
 
+
+def run_maze(obs_list, side):
+    """Go to the end of the end of the list path[]
+    
+    parameters:
+    path  : (list) path to the end point
+    
+    side : the side of the end point of the robot. """
+
+    print('starting maze run..')
+    path = mazepath.draw_path(obs_list, side)
+
+    end = path[-1]
+    curr_pos = (0,0)
+    for i in path:
+    
+        import turtle as b 
+        b.shape("triangle")
+        b.speed(0)
+        if i[0] ==end[0] and end[1] == i[1]:
+            break 
+        b.goto(i)
+        curr_pos = i
+    return True, f'I am at the {side} of the edge', curr_pos[0], curr_pos[1]
+    
+
 draw_boundary()
-
-
-
-
-
 
 
 def setup_world():

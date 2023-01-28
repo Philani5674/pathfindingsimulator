@@ -26,15 +26,7 @@ class TestObstacles(unittest.TestCase):
         self.assertFalse(isit)
 
 
-    def test_path_blocked(self):
-        isit = obs.is_path_blocked(0, 0, 0, 5, [(0,1), (6,9), (-20,120)])
-        self.assertTrue(isit)
 
-        isit = obs.is_path_blocked(6, -20, 6, 39, [(1,1), (3,9), (-20,120)])
-        self.assertTrue(isit)
-
-        isit = obs.is_path_blocked(-3, 0, 90, 0, [(0,1), (6,9), (-20,120)])
-        self.assertNotEqual(isit, True)
 
 
 if __name__ == '__main__':

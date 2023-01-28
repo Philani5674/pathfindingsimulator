@@ -42,12 +42,12 @@ def make_bottom_path(x,y):
     else: return False
 
 
-def make_left_path(x,y):#here
+def make_left_path(x,y):
     if x >= -90 and x<=-20 and (y>=-10 and y<=0):return True
     elif x >= -90 and x<=-80 and (y>=-150 and y<=-10):return True
     elif x >= -90 and x<=70 and (y>=-140 and y<=-130):return True
     elif x >= 60 and x<=70 and (y>=-190 and y<=-70):return True     
-    elif x >= 20 and x<=90 and (y>=-80 and y<=-70):return True   
+    elif x >= 60 and x<=100 and (y>=-190 and y<=-180):return True   
     elif x >= -90 and x<=20 and (y>=-190 and y<=-180):return True    
     elif x >= -40 and x<=-30 and (y>=-200 and y<=-140):return True
     else: return False

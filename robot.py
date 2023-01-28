@@ -63,7 +63,7 @@ def valid_command(command):
     Returns a boolean indicating if the robot can understand the command or not
     Also checks if there is an argument to the command, and if it a valid int
     """
-    valid_commands = ['off', 'help', 'replay', 'forward', 'back', 'right', 'left', 'sprint']
+    valid_commands = ['off', 'help', 'replay', 'forward', 'back', 'right', 'left', 'sprint', "mazerun"]
     (command_name, arg1) = split_command_input(command)
 
     if command_name.lower() == 'replay':
@@ -78,6 +78,8 @@ def valid_command(command):
             else:
                 range_args = range_args.split('-')
                 return is_int(range_args[0]) and is_int(range_args[1]) and len(range_args) == 2
+    if command_name == "mazerun" and  arg1 in ["top",  "left", 'bottom', 'right']:
+        return True
     else:
         return command_name.lower() in valid_commands and (len(arg1) == 0 or is_int(arg1))
 
@@ -100,6 +102,7 @@ RIGHT - turn right by 90 degrees
 LEFT - turn left by 90 degrees
 SPRINT - sprint forward according to a formula
 REPLAY - replays all movement commands from history [FORWARD, BACK, RIGHT, LEFT, SPRINT]
+Mazerun - solves the maze from (0,0) to [Top Down Left Right] borders.
 """
 
 
@@ -182,6 +185,10 @@ def call_command(command_name, command_arg, robot_name, x, y, dir_index, history
     elif command_name == 'replay':
         do_next, command_output, x, y = \
             do_replay(robot_name, command_arg, x, y, dir_index, history)
+
+    elif command_name == 'mazerun':
+        do_next, command_output, x, y = \
+            world.run_maze(obs_list, command_arg)
 
     return do_next, command_output, x, y, dir_index
 
