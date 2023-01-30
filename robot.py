@@ -4,13 +4,16 @@ import sys
 if len(sys.argv) > 1 and sys.argv[1].lower() == 'turtle':
     if sys.argv[2].lower() == 'crazymaze':
         import maze.the_worlds_most_crazy_maze as obs
-    else: import maze.obstacles as obs
+        obs_list = obs.get_obstacles()
+    else: 
+        import maze.obstacles as obs
     import world.turtle.world as world
 else:
     import world.text.world as world
     import maze.obstacles as obs
+    obs_list = obs.get_obstacles()
 
-obs_list = []
+
 
 def get_robot_name():
     name = input("What do you want to name your robot? ")
@@ -34,7 +37,7 @@ def get_command(robot_name):
     return command.lower()
 
 
-def split_command_input(command):
+def  split_command_input(command):
     """
     Splits the string at the first space character, to get the actual command, as well as the argument(s) for the command
     :return: (command, argument)
@@ -63,7 +66,7 @@ def valid_command(command):
     Returns a boolean indicating if the robot can understand the command or not
     Also checks if there is an argument to the command, and if it a valid int
     """
-    valid_commands = ['off', 'help', 'replay', 'forward', 'back', 'right', 'left', 'sprint']
+    valid_commands = ['off', 'help', 'replay', 'forward', 'back', 'right', 'left', 'sprint', "mazerun"]
     (command_name, arg1) = split_command_input(command)
 
     if command_name.lower() == 'replay':
@@ -78,6 +81,8 @@ def valid_command(command):
             else:
                 range_args = range_args.split('-')
                 return is_int(range_args[0]) and is_int(range_args[1]) and len(range_args) == 2
+    elif command_name.lower() == "mazerun" and arg1 in ["left", "right", "top", "down"]:
+            return True
     else:
         return command_name.lower() in valid_commands and (len(arg1) == 0 or is_int(arg1))
 
@@ -182,7 +187,23 @@ def call_command(command_name, command_arg, robot_name, x, y, dir_index, history
     elif command_name == 'replay':
         do_next, command_output, x, y = \
             do_replay(robot_name, command_arg, x, y, dir_index, history)
-
+    elif command_name == "mazerun":
+        from testing import draw_path
+        if command_arg == "top":
+            z, a = draw_path("top")
+            
+        elif command_arg == "down":
+            z, a = draw_path("down")
+            
+        elif command_arg == "left":
+            z, a = draw_path("left")
+            
+        elif command_arg == "right":
+            z, a = draw_path("right")
+        
+        do_next, command_output, x, y = True, ''+robot_name+': Sorry, I cannot go outside my safe zone.', z, a
+        
+        
     return do_next, command_output, x, y, dir_index
 
 

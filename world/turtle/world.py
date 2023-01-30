@@ -1,8 +1,3 @@
-# -------------------------------------------------------------------------------------------------
-#
-# TODO: Please replace this placeholder code with your solution for Toy Robot 4, and work from there.
-#
-# -------------------------------------------------------------------------------------------------
 import turtle as t
 import maze.the_worlds_most_crazy_maze as obs
 
@@ -38,8 +33,6 @@ def draw_obstacles(obs_list):
     t.color('red')
     t.pencolor('red')
     t.pendown()
-    from testing import draw_path
-    draw_path()
 
 
 def show_obstacles(obs_list):
@@ -56,6 +49,10 @@ def show_obstacles(obs_list):
 
 
 def show_position(robot_name, x, y):
+    if y== 200:print('I am the top adge')
+    elif y == -200: print('I am the bottom adge')
+    elif x == -100 : print("I am at the left edge")
+    elif x == 100 : print("I am at th right edge")
     print(' > '+robot_name+' now at position ('+str(x)+','+str(y)+').')
 
 

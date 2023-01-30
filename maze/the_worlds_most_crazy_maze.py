@@ -49,7 +49,7 @@ def make_left_path(x,y):#here
     elif x >= 60 and x<=70 and (y>=-190 and y<=-70):return True     
     elif x >= 20 and x<=90 and (y>=-80 and y<=-70):return True   
     elif x >= -90 and x<=20 and (y>=-190 and y<=-180):return True    
-    elif x >= -40 and x<=-30 and (y>=-200 and y<=-140):return True
+    elif x >= -90 and x<=100 and (y>=-195 and y<=-185):return True
     else: return False
 
 

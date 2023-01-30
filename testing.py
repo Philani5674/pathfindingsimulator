@@ -1,13 +1,11 @@
 import heapq
 import robot as r
 import maze.the_worlds_most_crazy_maze as b
-obstacle = b.get_obstacles()
+obstacle = r.obs_list
 
-def get_shortest_path():
-    
+def get_shortest_path(end):
     start = (0,0)
     #get the end point
-    end = get_end_point()
     # Create a priority queue to store the next nodes to visit
     heap = [(0, start)]
     # Create a dictionary to store the cost of visiting each node
@@ -41,7 +39,7 @@ def get_shortest_path():
             if b.is_path_blocked(x,y,new_x,new_y,obstacle) and b.is_position_blocked(new_x,new_y,obstacle):
                 continue
             # Calculate the new cost
-            new_cost = cost[curr_pos] + 1
+            new_cost = cost[curr_pos] + 5
             # If the new cost is lower than the existing cost, update it
             if new_cost < cost.get((new_x, new_y), float("inf")):
                 cost[(new_x, new_y)] = new_cost
@@ -70,32 +68,28 @@ def path(parent, end):
     return path
 
 
-def get_y_path(obstacle):
-    from  random import choice
-    path_side =  choice(["t",'d'])
-    y = ...
+def goto_left_right_path(obstacle,path_side):
+    x = ...
     #finding the axis end point
-    if path_side == "t":y= 200
-    else: y = -200
+    if path_side == "left":x= -100
+    else: x = 100
     end = None
-    for x in range(-100,101,5):
-        if not (x+5,y) in obstacle:
-            end = (x+5,y)
+    for y in range(-200,201,5):
+        if not (x,y) in obstacle:
+            end = (x,y)
             break
     return end
 
 
-def get_x_path(obstacle):
-    from  random import choice
-    path_side =  choice(["r",'l'])
-    x = ...
+def goto_top_bottom_path(obstacle,path_side):
+    y = ...
     #finding the axis end point
-    if path_side == "r":x= 200
-    else: x = -200
+    if path_side == "top":y= 200
+    else: y = -200
     end = None
-    for y in range(-200,201,5):
-        if not (x,y+5) in obstacle:
-            end = (x,y+5)
+    for x in range(-100,101,5):
+        if not (x,y) in obstacle:
+            end = (x,y)
             break
     return end
 
@@ -107,26 +101,29 @@ def solve_maze(path,end):
     for i in path:
     
         import turtle as b 
+        b.shapesize(0.3)
         b.shape("square")
         b.stamp()
         b.speed(1)
         if i[0] ==end[0] and end[1] == i[1]:
             break 
-        
-    
         b.goto(i)
         b.stamp()
         curr_pos = i
+    return curr_pos
         
         
-def get_end_point():
+def get_end_point(path_side):
     global obstacle
-    from random import choice
-    return choice([get_x_path(obstacle),get_y_path(obstacle)])
+    if path_side in ["top","down"]:
+        return goto_top_bottom_path(obstacle,path_side)
+    else:
+        return goto_left_right_path(obstacle,path_side)
     
 
-def draw_path():
-    path = get_shortest_path()
-    end = get_end_point()
-    solve_maze(path,end)
-        
+def draw_path(path_side):
+    end = get_end_point(path_side)
+    path = get_shortest_path(end)
+    return solve_maze(path,end)
+    
+
