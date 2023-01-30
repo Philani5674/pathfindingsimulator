@@ -1,4 +1,5 @@
 import maze.obstacles as ob
+import mazerunner_path as mazepath
 
 
 def show_obstacles(obs_list):
@@ -10,6 +11,7 @@ def show_obstacles(obs_list):
             print(f'- At position {obs_x},{obs_y} (to {obs_x + 4},{obs_y + 4})')
     else:
         return
+
 
 def show_position(robot_name, x, y):
     print(' > '+robot_name+' now at position ('+str(x)+','+str(y)+').')
@@ -51,7 +53,6 @@ def update_position(steps, x, y, dir_index):
     if is_position_allowed(new_x, new_y): 
         return True, new_x, new_y
     return False, x, y
-
 
 
 def do_forward(robot_name, steps, x, y, dir_index, obs_list):
@@ -128,6 +129,21 @@ def do_sprint(robot_name, steps, x, y, dir_index, obs_list):
         (do_next, command_output, x, y) = do_forward(robot_name, steps, x, y, dir_index, obs_list)
         print(command_output)
         return do_sprint(robot_name, steps - 1, x, y, dir_index, obs_list)
+
+
+def run_maze(obs_list, side):
+    """Go to the end of the end of the list path[]
+    
+    parameters:
+    path  : (list) path to the end point
+    
+    side : the side of the end point of the robot. """
+
+    print('starting maze run..')
+    path = mazepath.draw_path(obs_list, side)
+    end =  path[-1]
+    if side == '': side = "top"
+    return True, f'I am at the {side} edge', end[0], end[1]
 
 
 def setup_world():
