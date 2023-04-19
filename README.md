@@ -1,10 +1,29 @@
-#Toy Robot
+# Toy Robot Project with Python and Turtle Graphics
 
-* Modify your `robot.py` and other modules from *Toy Robot 4* to solve the problem as stated in the topic content.
-* You can run the program using the instructions in *To Run* below.
-* You can test technical correctness by running the unit tests as in the section *To Test* below.
+This is a simple project that simulates a toy robot using Python and the Turtle graphics library. The robot can move around a 2D grid, turn left or right, and change its direction. The grid also contains obstacles that the robot needs to navigate around.
 
-### To Run
+## Installation
 
-* `python3 robot.py`
-* follow the input prompts to get the desired output
+To run this project, you need to have Python 3 installed on your computer. You can download the latest version of Python from the official website at https://www.python.org/downloads/.
+
+## Usage
+
+To run the project, simply clone the repository and navigate to the project directory in your terminal. Then, run the following command:
+
+
+This will start the simulation and open a new window with the Turtle graphics canvas. You can use the following commands to control the robot:
+
+- `FORWARD`: move the robot forward by one step
+- `BACKWARD`: move the robot backward by one step
+- `LEFT`: turn the robot left by 90 degrees
+- `RIGHT`: turn the robot right by 90 degrees
+- `OFF`: turn off the simulation and exit the program
+
+When you run the program, you will be prompted to enter a command. Simply type one of the commands above and press enter to control the robot.
+
+If the robot encounters an obstacle, you will need to manually guide it around the obstacle.
+
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
