@@ -56,4 +56,3 @@ This will turn off the simulation and exit the program.
 This project is licensed under the MIT License. See the LICENSE file for details.
 ```
 
-Note that the image tag should be placed in the desired location within the README file, and the image file should be in the same directory as the README.
