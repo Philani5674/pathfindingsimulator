@@ -3,6 +3,10 @@
 ```
 # Toy Robot Project with Python and Turtle Graphics
 
+![Screenshot 2023-04-20 014513](https://user-images.githubusercontent.com/62145841/233217631-d1a2cba8-3c75-4409-bb08-a3daf8a789b2.png)
+![Screenshot 2023-04-20 014821](https://user-images.githubusercontent.com/62145841/233217647-94095601-31a7-4a3b-a9b8-c7930c8de96d.png)
+
+
 This is a simple project that simulates a toy robot using Python and the Turtle graphics library. The robot can move around a 2D grid, turn left or right, and change its direction. The grid also contains obstacles that the robot needs to navigate around.
 
 ## Installation
